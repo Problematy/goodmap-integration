@@ -1,8 +1,6 @@
 FROM ubuntu:22.04
 
 ARG BACKEND_VERSION
-ENV BACKEND_VERSION=$BACKEND_VERSION
-
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends apt-utils

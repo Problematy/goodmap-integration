@@ -6,6 +6,7 @@ BACKEND_DIR="${WORKDIR}/backend/goodmap"
 CONFIG="${BACKEND_DIR}/tests/e2e_tests/e2e_test_config.yml"
 
 function get_backend() {
+  rm -rf "backend"
   VERSION="$1"
   curl -L "https://github.com/Problematy/goodmap/archive/${VERSION}.zip" -o "backend.zip"
   unzip "backend.zip" -d "backend"
@@ -14,6 +15,7 @@ function get_backend() {
 }
 
 function get_frontend() {
+  rm -rf "frontend"
   VERSION="$1"
   curl -L "https://github.com/Problematy/goodmap-frontend/archive/${VERSION}.zip" -o "frontend.zip"
   unzip "frontend.zip" -d "frontend"
@@ -22,7 +24,7 @@ function get_frontend() {
 }
 
 function build_frontend() {
-  pushd "frontend/goodmap-frontend-${FRONTEND_VERSION}"
+  pushd "frontend/goodmap"
   npm i
   npm run serve&
   popd
@@ -46,14 +48,17 @@ function serve_custom_frontend() {
 }
 
 function main() {
-  if [ -z ${BACKEND_VERSION+x} ]
+  if [ -n "${BACKEND_VERSION}" ]
   then
     get_backend "${BACKEND_VERSION}"
-    if [ -z ${FRONTEND_VERSION+x} ]
-    then
-      serve_custom_frontend "${FRONTEND_VERSION}"
-    fi
   fi
+
+  if [ -n "${FRONTEND_VERSION}" ]
+  then
+    get_frontend "${FRONTEND_VERSION}"
+    serve_custom_frontend
+  fi
+
   run_backend
 }
 
