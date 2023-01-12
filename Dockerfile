@@ -1,6 +1,7 @@
 FROM ubuntu:22.04
 
 ARG BACKEND_VERSION
+ARG FRONTEND_VERSION
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends apt-utils
@@ -15,6 +16,8 @@ COPY run-goodmap.sh /usr/local/bin/run-goodmap
 
 WORKDIR /home/john
 RUN run-goodmap get_backend $BACKEND_VERSION
+RUN run-goodmap get_frontend $FRONTEND_VERSION
+
 RUN (cd backend/goodmap && poetry install)
 
 

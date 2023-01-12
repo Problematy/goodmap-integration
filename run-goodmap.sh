@@ -56,9 +56,9 @@ function main() {
   if [ -n "${FRONTEND_VERSION}" ]
   then
     get_frontend "${FRONTEND_VERSION}"
-    serve_custom_frontend
   fi
 
+  serve_custom_frontend
   run_backend
 }
 

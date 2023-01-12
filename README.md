@@ -4,22 +4,24 @@
 
 ### Building image
 
-To build docker image you have to provide `BACKEND_VERSION` of goodmap, e.g.:
-> docker build . -t goodmap --build-arg BACKEND_VERSION=0.1.7 
+To build docker image you have to provide `BACKEND_VERSION` and `FRONTEND_VERSION` of goodmap, e.g.:
+> docker build . -t goodmap --build-arg BACKEND_VERSION=0.1.7 --build-arg FRONTEND_VERSION=0.1.6
 
 ### Running in docker
 
 To run goodmap engine locally you have to expose two ports:
-- 5000 - always
-- 8080 - optional - if you run custom frontend 
+- 5000 - backend
+- 8080 - frontend
 
+To run default version of goodmap (frontend and backend that image was built with) run this command:
 
-As you could see `run-goodmap.sh` is entrypoint in our docker image. You can run its contend
-(serve goodmap) with its `main` function.
+> docker run -p 5000:5000 -p 8080:8080 goodmap main
 
 To run custom version of backend and frontend use `BACKEND_VERSION` and `FRONTEND_BACKEND`
-accordingly.
+accordingly:
 
-To sum up it could be something like this:
+> docker run -p 5000:5000 -p 8080:8080 -e BACKEND_VERSION=0.1.X -e FRONTEND_VERSION=0.1.X goodmap main
 
-> docker run -p 5000:5000 -p 8080:8080 -e BACKEND_VERSION=0.1.6 -e FRONTEND_VERSION=0.1.6  goodmap main
+You can also run your local version of app mounting directory with backend or frontend code like this:
+
+> docker run -p 5000:5000 -p 8080:8080 -v <your-frontend-directory>:/home/john/frontend/goodmap -v <your-backend-directory>:/home/john/backend/goodmap goodmap main
