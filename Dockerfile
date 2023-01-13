@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
-ARG BACKEND_VERSION
-ARG FRONTEND_VERSION
+ARG BACKEND_VERSION="0.1.7"
+ARG FRONTEND_VERSION="0.1.6"
 
 RUN apt-get update
 RUN apt-get install curl python3 pip unzip npm -y
