@@ -4,7 +4,6 @@ ARG BACKEND_VERSION
 ARG FRONTEND_VERSION
 
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends apt-utils
 RUN apt-get install curl python3 pip unzip npm -y
 RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local/ python3 -
 
