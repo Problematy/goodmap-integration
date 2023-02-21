@@ -8,12 +8,16 @@ RUN apt-get install curl python3 pip unzip npm -y
 RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local/ python3 -
 
 RUN useradd -m john
-USER john
 
+RUN mkdir /app
+RUN chown john:john /app
+
+USER john
+WORKDIR /app
 
 COPY run-goodmap.sh /usr/local/bin/run-goodmap
 
-WORKDIR /home/john
+
 RUN run-goodmap get_backend $BACKEND_VERSION
 RUN run-goodmap get_frontend $FRONTEND_VERSION
 

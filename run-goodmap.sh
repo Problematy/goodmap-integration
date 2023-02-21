@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WORKDIR="${HOME}"
+WORKDIR="/app"
 
 BACKEND_DIR="${WORKDIR}/backend/goodmap"
 CONFIG="${BACKEND_DIR}/tests/e2e_tests/e2e_test_config.yml"
@@ -38,7 +38,7 @@ function run_backend(){
 }
 
 function change_config() {
-  sed -i -E "s_(/static/map.js: )(.*)_\1 http://localhost:8080/map.js_" $CONFIG
+  sed -i -E "s_(/static/map.js: )(.*)_\1 http://localhost:8080/index.js_" $CONFIG
   echo "USE_WWW: false" >> $CONFIG
 }
 
