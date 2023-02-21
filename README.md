@@ -24,4 +24,4 @@ accordingly:
 
 You can also run your local version of app mounting directory with backend or frontend code like this:
 
-> docker run -p 5000:5000 -p 8080:8080 -v <your-frontend-directory>:/home/john/frontend/goodmap -v <your-backend-directory>:/home/john/backend/goodmap goodmap main
+> docker run -p 5000:5000 -p 8080:8080 -v YOUR-FRONTEND-DIRECTORY:/home/john/frontend/goodmap -v YOUR-BACKEND-DIRECTORY:/home/john/backend/goodmap goodmap main
